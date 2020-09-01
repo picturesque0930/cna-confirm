@@ -17,21 +17,42 @@ public class Confirm {
 
     @PostPersist
     public void onPostPersist(){
+
+         // 이벤트 인스턴스 생성
         ConfirmRequested confirmRequested = new ConfirmRequested();
+        // status setting 보류 board 에서 처리하자.
+        //confirmRequested.setStatus("BOOKED");
+
+        // 속성값 할당
         BeanUtils.copyProperties(this, confirmRequested);
         confirmRequested.publishAfterCommit();
+        
+        // ConfirmRequested confirmRequested = new ConfirmRequested();
+        // BeanUtils.copyProperties(this, confirmRequested);
+        // confirmRequested.publishAfterCommit();
 
 
     }
 
     @PostUpdate
     public void onPostUpdate(){
+
+        // 이벤트 인스턴스 생성
+        // BookingChanged bookingChanged = new BookingChanged();
         ConfirmCompleted confirmCompleted = new ConfirmCompleted();
+
+        // 속성값 할당
         BeanUtils.copyProperties(this, confirmCompleted);
         confirmCompleted.publishAfterCommit();
 
+        // ConfirmCompleted confirmCompleted = new ConfirmCompleted();
+        // BeanUtils.copyProperties(this, confirmCompleted);
+        // confirmCompleted.publishAfterCommit();
 
+        // 이벤트 인스턴스 생성
         ConfirmDenied confirmDenied = new ConfirmDenied();
+
+        // 속성값 할당
         BeanUtils.copyProperties(this, confirmDenied);
         confirmDenied.publishAfterCommit();
 
@@ -43,7 +64,7 @@ public class Confirm {
         ConfirmApplication.applicationContext.getBean(ohcna.external.BookingService.class)
             .bookingCancel(booking);
 
-
+ 
     }
 
 

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: confirm
-          image: username/confirm:latest
+          image: 052937454741.dkr.ecr.ap-northeast-2.amazonaws.com/team-e-confirm:latest # ECR image URI
           ports:
             - containerPort: 8080
           readinessProbe:
