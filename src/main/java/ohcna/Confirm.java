@@ -62,10 +62,16 @@ public class Confirm {
             BeanUtils.copyProperties(this, confirmDenied);
             confirmDenied.publishAfterCommit();
 
-            ohcna.external.Booking booking = new ohcna.external.Booking();
+            // ohcna.external.Booking booking = new ohcna.external.Booking();
+            // booking.setId(this.getBookingId());
             // mappings goes here
             ConfirmApplication.applicationContext.getBean(ohcna.external.BookingService.class)
-                .bookingCancel(booking);
+                .bookingCancel(this.getBookingId());
+        }
+
+        // Exception Error
+        else{
+            System.out.println("Error");
         }
 
        

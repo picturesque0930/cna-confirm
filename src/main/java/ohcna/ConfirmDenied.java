@@ -6,6 +6,7 @@ public class ConfirmDenied extends AbstractEvent {
     private String userId;
     private String status;
     private String confirmDtm;
+    private Long bookingId;
 
     public ConfirmDenied(){
         super();
@@ -38,5 +39,14 @@ public class ConfirmDenied extends AbstractEvent {
 
     public void setConfirmDtm(String confirmDtm) {
         this.confirmDtm = confirmDtm;
+    }
+
+    // 추가
+    public Long getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(Long bookingId) {
+        this.bookingId = bookingId;
     }
 }
