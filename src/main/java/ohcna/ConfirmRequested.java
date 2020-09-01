@@ -6,6 +6,7 @@ public class ConfirmRequested extends AbstractEvent {
     private String userId;
     private String status;
     private String confirmDtm;
+    private Long bookingId;
 
     public Long getId() {
         return id;
@@ -34,5 +35,14 @@ public class ConfirmRequested extends AbstractEvent {
 
     public void setConfirmDtm(String confirmDtm) {
         this.confirmDtm = confirmDtm;
+    }
+
+    // 추가
+    public Long getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(Long bookingId) {
+        this.bookingId = bookingId;
     }
 }

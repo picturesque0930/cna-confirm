@@ -13,7 +13,7 @@ public class PolicyHandler{
 
     @Autowired ConfirmRepository confirmRepository;
     //추가 
-    //ConfirmRepository confirmRepository;
+    ////ConfirmRepository confirmRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
     public void onStringEventListener(@Payload String eventString){
@@ -24,12 +24,18 @@ public class PolicyHandler{
     public void wheneverBookingCreated_ConfirmRequest(@Payload BookingCreated bookingCreated){
 
         if(bookingCreated.isMe()){
-            System.out.println("##### listener ConfirmRequest : " + bookingCreated.toJson());
+            
 
             Confirm confirm = new Confirm();
             confirm.setStatus("BOOKED");
             confirm.setUserId(bookingCreated.getBookingUserId());
+            //confirm.setConfirmDtm(bookingCreated.getUseStartDtm());
+           // confirm.set
+            // 추가 event
+            confirm.setBookingId(bookingCreated.getId());
+
             confirmRepository.save(confirm);
+            System.out.println("##### listener ConfirmRequest : " + bookingCreated.toJson());
         }
     }
 
