@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class PolicyHandler{
 
-    @Autowired ConfirmRepository ConfirmRepository;
-    //추가
-    ConfirmRepository confirmRepository;
+    @Autowired ConfirmRepository confirmRepository;
+    //추가 
+    //ConfirmRepository confirmRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
     public void onStringEventListener(@Payload String eventString){
@@ -29,7 +29,7 @@ public class PolicyHandler{
             Confirm confirm = new Confirm();
             confirm.setStatus("BOOKED");
             confirm.setUserId(bookingCreated.getBookingUserId());
-            ConfirmRepository.save(confirm);
+            confirmRepository.save(confirm);
         }
     }
 
