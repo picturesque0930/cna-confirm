@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PolicyHandler{
+
+    @Autowired ConfirmRepository ConfirmRepository;
+    //추가
+    ConfirmRepository confirmRepository;
+
     @StreamListener(KafkaProcessor.INPUT)
     public void onStringEventListener(@Payload String eventString){
 
@@ -20,6 +25,11 @@ public class PolicyHandler{
 
         if(bookingCreated.isMe()){
             System.out.println("##### listener ConfirmRequest : " + bookingCreated.toJson());
+
+            Confirm confirm = new Confirm();
+            confirm.setStatus("BOOKED");
+            confirm.setUserId(bookingCreated.getBookingUserId());
+            ConfirmRepository.save(confirm);
         }
     }
 
