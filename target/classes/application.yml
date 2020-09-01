@@ -65,3 +65,6 @@ spring:
         event-out:
           destination: ohcna
           contentType: application/json
+api:
+  url:
+    booking: http://booking:8080
