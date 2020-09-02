@@ -124,5 +124,5 @@ public class Confirm {
     public void setBookingId(Long bookingId) {
         this.bookingId = bookingId;
     }
-
+ 
 }
