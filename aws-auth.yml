@@ -6,13 +6,20 @@ data:
       - system:nodes
       rolearn: arn:aws:iam::052937454741:role/eksctl-user16-cluster-nodegroup-NodeInstanceRole-13H7XRSV0OOBZ
       username: system:node:{{EC2PrivateDNSName}}
+      - rolearn: arn:aws:iam::052937454741:role/CodeBuildForIndE
+      username: CodeBuildForIndE 
+      groups:
+        -system:masters
   mapUsers: |
     []
 kind: ConfigMap
 metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"mapRoles":"- groups:\n  - system:bootstrappers\n  - system:nodes\n  rolearn: arn:aws:iam::052937454741:role/eksctl-user16-cluster-nodegroup-NodeInstanceRole-13H7XRSV0OOBZ\n  username: system:node:{{EC2PrivateDNSName}}\n","mapUsers":"[]\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2020-09-02T06:04:25Z","name":"aws-auth","namespace":"kube-system","resourceVersion":"930","selfLink":"/api/v1/namespaces/kube-system/configmaps/aws-auth","uid":"c0e6530d-1327-4c2b-908b-cf9c765effea"}}
   creationTimestamp: "2020-09-02T06:04:25Z"
   name: aws-auth
   namespace: kube-system
-  resourceVersion: "930"
+  resourceVersion: "113506"
   selfLink: /api/v1/namespaces/kube-system/configmaps/aws-auth
   uid: c0e6530d-1327-4c2b-908b-cf9c765effea
